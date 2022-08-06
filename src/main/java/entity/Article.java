@@ -10,6 +10,10 @@ public class Article {
     private boolean isPublished;
     private int userId;
 
+    public Article(){
+
+    }
+
     public Article(int id, String title, String brief, String content,
                    String createDate, boolean isPublished, int userId) {
         this.id = id;
@@ -20,7 +24,6 @@ public class Article {
         this.isPublished = isPublished;
         this.userId = userId;
     }
-
     public int getId() {
         return id;
     }

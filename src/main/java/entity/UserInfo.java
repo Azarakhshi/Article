@@ -8,14 +8,7 @@ public class UserInfo {
     private String birthday;
     private String password;
 
-    public UserInfo(int id, String userName, String nationalCode,
-                    String birthday, String password) {
-        this.id = id;
-        this.userName = userName;
-        this.nationalCode = nationalCode;
-        this.birthday = birthday;
-        this.password = password;
-    }
+
 
     public int getId() {
         return id;
