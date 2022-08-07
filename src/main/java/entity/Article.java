@@ -10,20 +10,7 @@ public class Article {
     private boolean isPublished;
     private int userId;
 
-    public Article(){
 
-    }
-
-    public Article(int id, String title, String brief, String content,
-                   String createDate, boolean isPublished, int userId) {
-        this.id = id;
-        this.title = title;
-        this.brief = brief;
-        this.content = content;
-        this.createDate = createDate;
-        this.isPublished = isPublished;
-        this.userId = userId;
-    }
     public int getId() {
         return id;
     }

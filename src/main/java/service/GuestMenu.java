@@ -24,7 +24,8 @@ public class GuestMenu {
                 SignUp signUp = new SignUp();
                 signUp.signUp();
             } else if (input.equals("2")) {
-
+                Login login = new Login();
+                login.login();
             } else if (input.equals("3")) {
                 //show articles
             } else if (input.equals("4")) {

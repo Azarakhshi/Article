@@ -10,7 +10,7 @@ import java.sql.Statement;
 
 public class UserRepository {
 
-    public void insert(UserInfo userInfo) throws SQLException {
+    public void signUp(UserInfo userInfo) throws SQLException {
 
         String sql = "INSERT INTO userinfo (userName, nationalCode, birthday , password) VALUES (  ? , ? , ? , ? )";
         PreparedStatement insertStatement = ApplicationConnection.
@@ -24,6 +24,28 @@ public class UserRepository {
         insertStatement.execute();
         insertStatement.close();
 
+        insertStatement.execute();
+        ResultSet generatedIds = insertStatement.getGeneratedKeys();
+        generatedIds.next();
+        int id = generatedIds.getInt("id");
+        userInfo.setId(id);
+        insertStatement.close();
+        generatedIds.close();
+
+
     }
+
+    public boolean logIn(UserInfo userInfo) throws SQLException {
+
+        String sql = "SELECT username from userInfo WHERE username=? and password=? ;";
+        PreparedStatement ps = ApplicationConnection.getConnection().prepareStatement(sql);
+        ps.setString(1, userInfo.getUserName());
+        ps.setString(2, userInfo.getPassword());
+
+        ResultSet rs = ps.executeQuery();
+        return rs.next();
+    }
+
+
 
 }
