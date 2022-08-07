@@ -27,7 +27,8 @@ public class GuestMenu {
                 Login login = new Login();
                 login.login();
             } else if (input.equals("3")) {
-                //show articles
+                ShowPublishedArticles showPublishedArticles = new ShowPublishedArticles();
+                showPublishedArticles.showPublishedArticlese();
             } else if (input.equals("4")) {
                 break;
             } else {
