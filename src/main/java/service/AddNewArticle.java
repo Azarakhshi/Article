@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class AddNewArticle {
 
-    Article article = new Article();
+    private Article article = new Article();
     Scanner scanner = new Scanner(System.in);
 
 

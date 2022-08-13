@@ -88,5 +88,20 @@ public class ArticleRepository {
         return rs.next();
     }
 
+    public void editArticle(Article oldArticle , Article newArticle)throws SQLException{
+        String sql = " UPDATE article SET title = ? , brief = ? , content = ? , creatdate = ? , ispublished = ?  WHERE title = ? and userid = ?  ";
+        PreparedStatement ps = ApplicationConnection.getConnection()
+                .prepareStatement(sql);
+        ps.setString(1,newArticle.getTitle());
+        ps.setString(2, newArticle.getBrief());
+        ps.setString(3, newArticle.getContent());
+        ps.setString(4, newArticle.getCreateDate());
+        ps.setBoolean(5, newArticle.isPublished());
+        ps.setString(6, oldArticle.getTitle());
+        ps.setInt(7, oldArticle.getUserId());
+        ps.executeUpdate();
+        ps.close();
+    }
+
 
 }

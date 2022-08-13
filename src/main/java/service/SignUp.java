@@ -1,6 +1,7 @@
 package service;
 
 import entity.UserInfo;
+import menu.UserMenu;
 import repository.UserRepository;
 
 import java.sql.SQLException;

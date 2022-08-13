@@ -1,6 +1,9 @@
-package service;
+package menu;
 
 import config.ApplicationConnection;
+import service.Login;
+import service.ShowPublishedArticles;
+import service.SignUp;
 
 import java.util.Scanner;
 import java.sql.SQLException;

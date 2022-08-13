@@ -1,7 +1,11 @@
-package service;
+package menu;
 
 import entity.UserInfo;
 import repository.UserRepository;
+import service.AddNewArticle;
+import service.ChangePassword;
+import service.EditUserArticles;
+import service.ShowUserArticles;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -30,7 +34,8 @@ public class UserMenu {
                 ShowUserArticles showUserArticles = new ShowUserArticles();
                 showUserArticles.showUserArticles(id);
             }else if(input.equals("2")){
-                //edit my articles
+                EditUserArticles editUserArticles = new EditUserArticles();
+                editUserArticles.editArticle(id);
             }else if(input.equals("3")){
                 AddNewArticle addNewArticle = new AddNewArticle();
                 addNewArticle.AddnewArticle(id);
