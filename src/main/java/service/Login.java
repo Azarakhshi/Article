@@ -48,7 +48,7 @@ public class Login {
         if (check) {
             System.out.println("your account is exist. ");
             UserMenu userMenu = new UserMenu();
-            userMenu.userMenu();
+            userMenu.userMenu(userInfo);
         } else {
             System.out.println("your account is not exist. ");
         }

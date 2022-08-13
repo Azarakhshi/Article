@@ -16,10 +16,11 @@ public class SignUp {
         do {
             System.out.println("please enter the username: ");
             username = scanner.next();
-            if (username.length() <= 18) {
+            UserRepository userRepository = new UserRepository();
+            if (username.length() <= 18 && !userRepository.usernameContains(username)) {
                 break;
             } else {
-                System.out.println("your username is not correct! ");
+                System.out.println("your username is not valid! ");
             }
         } while (true);
         userInfo.setUserName(username);
@@ -62,7 +63,7 @@ public class SignUp {
 
     public void signUp() throws SQLException {
         setUserName();
-        setUserName();
+        setNationalCode();
         setBirthday();
         UserRepository userRepository = new UserRepository();
         userRepository.signUp(userInfo);
@@ -70,7 +71,7 @@ public class SignUp {
         System.out.println("your account is created! ");
 
         UserMenu userMenu = new UserMenu();
-        userMenu.userMenu();
+        userMenu.userMenu(userInfo);
 
         System.out.println("********");
     }

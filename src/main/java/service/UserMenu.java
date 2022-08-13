@@ -1,15 +1,22 @@
 package service;
 
+import entity.UserInfo;
+import repository.UserRepository;
+
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class UserMenu {
 
-    public void userMenu() {
+    public void userMenu(UserInfo userInfo) throws SQLException {
+
 
         Scanner scanner = new Scanner(System.in);
         String input;
 
         while (true) {
+            UserRepository userRepository = new UserRepository();
+            int id = userRepository.findIdByUsername(userInfo.getUserName());
             System.out.println("Welcome. ");
             System.out.println("please chose fllowing menu. ");
             System.out.println("1: Show My Articles ");
@@ -20,13 +27,16 @@ public class UserMenu {
 
             input = scanner.next();
             if(input.equals("1")){
-                //show my articles
+                ShowUserArticles showUserArticles = new ShowUserArticles();
+                showUserArticles.showUserArticles(id);
             }else if(input.equals("2")){
                 //edit my articles
             }else if(input.equals("3")){
-                //add a new articles
+                AddNewArticle addNewArticle = new AddNewArticle();
+                addNewArticle.AddnewArticle(id);
             }else if(input.equals("4")){
-                // change password
+                ChangePassword changePassword = new ChangePassword();
+                changePassword.changePassword(userInfo);
             }else{
                 break;
             }
