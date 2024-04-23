@@ -10,7 +10,7 @@ public class ApplicationConnection {
             connection = DriverManager
                     .getConnection("jdbc:postgresql://localhost:5432/postgres",
                             "postgres",
-                            "qazwsx123");
+                            "mysecretpassword");
         } catch (SQLException e) {
             e.printStackTrace();
         }
