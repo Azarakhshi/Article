@@ -49,15 +49,8 @@ public class SignUp {
 
     public void setBirthday() throws SQLException {
         String birthday;
-        do {
-            System.out.println("please enter your birthday: ");
-            birthday = scanner.next();
-            if (birthday.length() <= 9 && birthday.matches("[0-9[-]]+")) {
-                break;
-            } else {
-                System.out.println("your birthday is not correct! ");
-            }
-        } while (true);
+        System.out.println("please enter your birthday: ");
+        birthday = scanner.next();
         userInfo.setBirthday(birthday);
     }
 

@@ -14,10 +14,10 @@ public class UserMenu {
 
     public void userMenu(UserInfo userInfo) throws SQLException {
 
-
         Scanner scanner = new Scanner(System.in);
         String input;
 
+        label:
         while (true) {
             UserRepository userRepository = new UserRepository();
             int id = userRepository.findIdByUsername(userInfo.getUserName());
@@ -30,24 +30,28 @@ public class UserMenu {
             System.out.println("5: LogOut ");
 
             input = scanner.next();
-            if(input.equals("1")){
-                ShowUserArticles showUserArticles = new ShowUserArticles();
-                showUserArticles.showUserArticles(id);
-            }else if(input.equals("2")){
-                EditUserArticles editUserArticles = new EditUserArticles();
-                editUserArticles.editArticle(id);
-            }else if(input.equals("3")){
-                AddNewArticle addNewArticle = new AddNewArticle();
-                addNewArticle.AddnewArticle(id);
-            }else if(input.equals("4")){
-                ChangePassword changePassword = new ChangePassword();
-                changePassword.changePassword(userInfo);
-            }else{
-                break;
+            switch (input) {
+                case "1":
+                    ShowUserArticles showUserArticles = new ShowUserArticles();
+                    showUserArticles.showUserArticles(id);
+                    break;
+                case "2":
+                    EditUserArticles editUserArticles = new EditUserArticles();
+                    editUserArticles.editArticle(id);
+                    break;
+                case "3":
+                    AddNewArticle addNewArticle = new AddNewArticle();
+                    addNewArticle.AddnewArticle(id);
+                    break;
+                case "4":
+                    ChangePassword changePassword = new ChangePassword();
+                    changePassword.changePassword(userInfo);
+                    break;
+                default:
+                    break label;
             }
 
         }
-
 
 
     }

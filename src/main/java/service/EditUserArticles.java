@@ -10,8 +10,8 @@ public class EditUserArticles {
 
     Scanner scanner = new Scanner(System.in);
     ArticleRepository articleRepository = new ArticleRepository();
-    private Article oldArticle = new Article();
-    private Article newArticle = new Article();
+    private final Article oldArticle = new Article();
+    private final Article newArticle = new Article();
 
     private void checkTitleUserArticle(int id) throws SQLException {
         String title;

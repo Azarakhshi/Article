@@ -25,8 +25,6 @@ public class ShowPublishedArticles {
                     }
                 }
             }
-            System.out.println("********");
-            break;
         }
     }
 

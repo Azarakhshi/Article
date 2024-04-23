@@ -13,8 +13,11 @@ import java.util.Objects;
 public class GuestMenu {
 
     public void showGuestMenu() throws SQLException {
+
         Scanner scanner = new Scanner(System.in);
         String input;
+
+        label:
         while (true) {
             System.out.println("please chose fllowing menu. ");
             System.out.println("1: Sign up");
@@ -23,22 +26,28 @@ public class GuestMenu {
             System.out.println("4: Exit");
 
             input = scanner.next();
-            if (input.equals("1")) {
-                SignUp signUp = new SignUp();
-                signUp.signUp();
-            } else if (input.equals("2")) {
-                Login login = new Login();
-                login.login();
-            } else if (input.equals("3")) {
-                ShowPublishedArticles showPublishedArticles = new ShowPublishedArticles();
-                showPublishedArticles.showPublishedArticlese();
-            } else if (input.equals("4")) {
-                break;
-            } else {
-                System.out.println("Eror! please try again. ");
+            switch (input) {
+                case "1":
+                    SignUp signUp = new SignUp();
+                    signUp.signUp();
+                    break;
+                case "2":
+                    Login login = new Login();
+                    login.login();
+                    break;
+                case "3":
+                    ShowPublishedArticles showPublishedArticles = new ShowPublishedArticles();
+                    showPublishedArticles.showPublishedArticlese();
+                    break;
+                case "4":
+                    break label;
+                default:
+                    System.out.println("Eror! please try again. ");
+                    break;
             }
 
         }
+
 
     }
 }

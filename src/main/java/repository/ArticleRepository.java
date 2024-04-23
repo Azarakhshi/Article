@@ -26,8 +26,8 @@ public class ArticleRepository {
             article.setTitle(resultSet.getString("title"));
             article.setBrief(resultSet.getString("brief"));
             article.setContent(resultSet.getString("content"));
-            article.setCreateDate(resultSet.getString("creatdate"));
-            article.setPublished(resultSet.getBoolean("ispublished"));
+            article.setCreateDate(resultSet.getString("creat_date"));
+            article.setPublished(resultSet.getBoolean("is_published"));
             article.setUserId(resultSet.getInt("userid"));
             articles[index] = article;
             index++;
@@ -68,9 +68,9 @@ public class ArticleRepository {
             article.setTitle(result.getString("title"));
             article.setBrief(result.getString("brief"));
             article.setContent(result.getString("content"));
-            article.setCreateDate(result.getString("creatdate"));
-            article.setPublished(result.getBoolean("ispublished"));
-            article.setUserId(result.getInt("userid"));
+            article.setCreateDate(result.getString("create_date"));
+            article.setPublished(result.getBoolean("is_published"));
+            article.setUserId(result.getInt("user_id"));
             articles[index] = article;
             index++;
 
@@ -89,7 +89,7 @@ public class ArticleRepository {
     }
 
     public void editArticle(Article oldArticle, Article newArticle) throws SQLException {
-        String sql = " UPDATE article SET title = ? , brief = ? , content = ? , creatE_date = ? , is_published = ?  WHERE title = ? and user_id = ?  ";
+        String sql = " UPDATE article SET title = ? , brief = ? , content = ? , create_date = ? , is_published = ?  WHERE title = ? and user_id = ?  ";
         PreparedStatement ps = ApplicationConnection.getConnection()
                 .prepareStatement(sql);
         ps.setString(1, newArticle.getTitle());
