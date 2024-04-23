@@ -12,7 +12,7 @@ public class UserRepository {
 
     public void signUp(UserInfo userInfo) throws SQLException {
 
-        String sql = "INSERT INTO userinfo (userName, nationalCode, birthday , password) VALUES (  ? , ? , ? , ? )";
+        String sql = "INSERT INTO user_info (user_name, national_Code, birthday , password) VALUES (  ? , ? , ? , ? )";
         PreparedStatement insertStatement = ApplicationConnection.
                 getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
@@ -22,17 +22,15 @@ public class UserRepository {
         insertStatement.setString(4, userInfo.getPassword());
 
 
-
         insertStatement.execute();
         insertStatement.close();
-
 
 
     }
 
     public boolean logIn(UserInfo userInfo) throws SQLException {
 
-        String sql = "SELECT username from userInfo WHERE username=? and password=? ;";
+        String sql = "SELECT user_name from user_info WHERE user_name=? and password=? ;";
         PreparedStatement ps = ApplicationConnection.getConnection().prepareStatement(sql);
         ps.setString(1, userInfo.getUserName());
         ps.setString(2, userInfo.getPassword());
@@ -43,7 +41,7 @@ public class UserRepository {
 
     public int findIdByUsername(String userName) throws SQLException {
         int id;
-        String sql = "SELECT id from userInfo WHERE username=?";
+        String sql = "SELECT id from user_info WHERE user_name=?";
         PreparedStatement ps = ApplicationConnection.getConnection()
                 .prepareStatement(sql);
         ps.setString(1, userName);
@@ -59,7 +57,7 @@ public class UserRepository {
     }
 
     public boolean usernameContains(String username) throws SQLException {
-        String sql = "SELECT username from userInfo WHERE username=? ";
+        String sql = "SELECT user_name from user_info WHERE user_name=? ";
         PreparedStatement ps = ApplicationConnection.getConnection().prepareStatement(sql);
         ps.setString(1, username);
 
@@ -67,11 +65,11 @@ public class UserRepository {
         return rs.next();
     }
 
-    public void changePassword(UserInfo userInfo)throws SQLException{
-        String sql = " UPDATE userinfo SET password = ?   WHERE username = ?";
+    public void changePassword(UserInfo userInfo) throws SQLException {
+        String sql = " UPDATE user_info SET password = ?   WHERE username = ?";
         PreparedStatement ps = ApplicationConnection.getConnection()
                 .prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-        ps.setString(1,userInfo.getPassword());
+        ps.setString(1, userInfo.getPassword());
         ps.setString(2, userInfo.getUserName());
         ps.executeUpdate();
         ps.close();

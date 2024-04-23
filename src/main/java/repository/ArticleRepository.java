@@ -12,7 +12,7 @@ import java.sql.Statement;
 public class ArticleRepository {
 
     public Article[] loadAllArticle() throws SQLException {
-        final String query = " select * from article where ispublished = true order by id DESC;";
+        final String query = " select * from article where is_published = true order by id DESC;";
         PreparedStatement statement = ApplicationConnection.getConnection().prepareStatement(query);
 
 
@@ -38,7 +38,7 @@ public class ArticleRepository {
     }
 
     public void insertArticle(Article article) throws SQLException {
-        String sql = " INSERT INTO article(title , brief ,  content , creatdate , ispublished , userid) VALUES (?,?,?,?,?,?)";
+        String sql = " INSERT INTO article(title , brief ,  content , create_date , is_published , user_id) VALUES (?,?,?,?,?,?)";
         PreparedStatement ps = ApplicationConnection.getConnection()
                 .prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         ps.setString(1, article.getTitle());
@@ -54,7 +54,7 @@ public class ArticleRepository {
     }
 
     public Article[] loadUserArticle(int id) throws SQLException {
-        final String query = " select * from article where userid = ? order by id DESC;";
+        final String query = " select * from article where user_id = ? order by id DESC;";
         PreparedStatement statement = ApplicationConnection.getConnection().prepareStatement(query);
         statement.setInt(1, id);
 
@@ -79,8 +79,8 @@ public class ArticleRepository {
         return articles;
     }
 
-    public boolean ArticleContains(String title , int id) throws SQLException {
-        String sql = "SELECT title from article WHERE title=? and userid = ? ";
+    public boolean ArticleContains(String title, int id) throws SQLException {
+        String sql = "SELECT title from article WHERE title=? and user_id = ? ";
         PreparedStatement ps = ApplicationConnection.getConnection().prepareStatement(sql);
         ps.setString(1, title);
         ps.setInt(2, id);
@@ -88,11 +88,11 @@ public class ArticleRepository {
         return rs.next();
     }
 
-    public void editArticle(Article oldArticle , Article newArticle)throws SQLException{
-        String sql = " UPDATE article SET title = ? , brief = ? , content = ? , creatdate = ? , ispublished = ?  WHERE title = ? and userid = ?  ";
+    public void editArticle(Article oldArticle, Article newArticle) throws SQLException {
+        String sql = " UPDATE article SET title = ? , brief = ? , content = ? , creatE_date = ? , is_published = ?  WHERE title = ? and user_id = ?  ";
         PreparedStatement ps = ApplicationConnection.getConnection()
                 .prepareStatement(sql);
-        ps.setString(1,newArticle.getTitle());
+        ps.setString(1, newArticle.getTitle());
         ps.setString(2, newArticle.getBrief());
         ps.setString(3, newArticle.getContent());
         ps.setString(4, newArticle.getCreateDate());
